@@ -312,6 +312,6 @@ const importMap = async (file: File) => {
   return chart.hitObjects.map(hitObject => ({
     lane: (hitObject.startX - 64) / 128,
     time: hitObject.startTime,
-    hold: hitObject.endTime - hitObject.startTime
+    hold: (hitObject as any).endTime - hitObject.startTime
   }))
 }

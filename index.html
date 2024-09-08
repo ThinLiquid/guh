@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + TS</title>
+  </head>
+  <body>
+    <style>
+      body, html {
+        --random: 0;
+        --rnd-positive-or-negative: 1;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+      }
+
+      * {
+        box-sizing: border-box;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+
+        ::-webkit-scrollbar {
+          display: none;
+        }
+      }
+
+      .judgement {
+        animation: judgement 0.5s forwards;
+      }
+
+      @keyframes judgement {
+        0% {
+          opacity: 1;
+          top: calc(-20px + (var(--random) * 10px));
+        }
+        100% {
+          opacity: 0;
+          transform: translate(-50%, -50%) rotate(calc(var(--random) * (10deg * var(--rnd-positive-or-negative))));
+        }
+      }
+    </style>
+    <input id="file" type="file" style="position: absolute;top: 0;left: 0;z-index: 2;" />
+    <div id="judgement" style="position: absolute;top:calc(50%);left:50%;color:white;transform: translate(-50%, -50%);font-weight:900;"></div>
+    <div id="combo" style="position: absolute;top:calc(50% + 20px);left:50%;color:white;transform: translate(-50%, -50%);font-weight:900;"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

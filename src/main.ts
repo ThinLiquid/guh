@@ -257,6 +257,7 @@ const createJudgement = (text: string) => {
 let audioUrl = ''
 
 import { BeatmapDecoder } from 'osu-parsers'
+// @ts-expect-error
 import { ManiaRuleset } from 'osu-mania-stable';
 
 const ruleset = new ManiaRuleset();

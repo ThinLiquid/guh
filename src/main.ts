@@ -295,6 +295,8 @@ const importMap = async (file: File) => {
     const _ = prompt(`${name}\n\n${osuFiles.map((file, index) => `${index + 1}: ${file.name}`).join('\n')}`)
     osuEntry = osuEntry.filter((entry) => entry.filename === osuFiles[parseInt(_!) - 1].filename)
   }
+
+  console.log(osuEntry)
   
   const osuFile = await osuEntry[0].getData!(new zip.TextWriter())
 

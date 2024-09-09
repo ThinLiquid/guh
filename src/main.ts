@@ -224,12 +224,28 @@ const start = async () => {
 
 const highlightLane = (laneIndex: number) => {
   const lane = lanes[laneIndex];
-  lane.fill('red')
+  
+  // Save the lane's current position and dimensions
+  const x = lane.x;
+  const y = lane.y;
+  const width = lane.width;
+  const height = lane.height;
+  
+  // Redraw the lane in red
+  lane.clear(); // Clear previous fill
+  lane.beginFill(0xFF0000); // Red color
+  lane.drawRect(x, y, width, height); // Redraw the rectangle with the same position/size
+  lane.endFill();
 
   setTimeout(() => {
-    lane.fill('black')
+    // Redraw the lane back in black after 100ms
+    lane.clear(); // Clear again before refilling
+    lane.beginFill(0x000000); // Black color
+    lane.drawRect(x, y, width, height); // Same position/size
+    lane.endFill();
   }, 100);
-}
+};
+
 
 (document.querySelector('#file') as HTMLInputElement).onchange = () => {
   start();

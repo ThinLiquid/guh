@@ -225,26 +225,29 @@ const start = async () => {
 const highlightLane = (laneIndex: number) => {
   const lane = lanes[laneIndex];
   
-  // Save the lane's current position and dimensions
-  const x = lane.x;
-  const y = lane.y;
-  const width = lane.width;
-  const height = lane.height;
-  
-  // Redraw the lane in red
-  lane.clear(); // Clear previous fill
-  lane.beginFill(0xFF0000); // Red color
-  lane.drawRect(x, y, width, height); // Redraw the rectangle with the same position/size
-  lane.endFill();
+  // Ensure you're drawing the same shape in the same position
+  const rect = {
+    x: playfieldStartX + i * laneWidth, // Set your specific x-coordinate for the lane
+    y: app.screen.height,  // Set your specific y-coordinate for the lane
+    width: laneWidth,  // Set your specific width for the lane
+    height: app.screen.height   // Set your specific height for the lane
+  };
+
+  // Clear the previous graphics and redraw with red
+  lane.clear(); // Clear the previous graphics
+  lane.beginFill(0xFF0000); // Red color (0xFF0000 is the hex code for red)
+  lane.drawRect(rect.x, rect.y, rect.width, rect.height); // Draw the rectangle at the correct position
+  lane.endFill(); // End the fill
 
   setTimeout(() => {
-    // Redraw the lane back in black after 100ms
-    lane.clear(); // Clear again before refilling
-    lane.beginFill(0x000000); // Black color
-    lane.drawRect(x, y, width, height); // Same position/size
-    lane.endFill();
+    // Clear and redraw the same shape in black after 100ms
+    lane.clear(); // Clear previous graphics
+    lane.beginFill(0x000000); // Black color (0x000000 is the hex code for black)
+    lane.drawRect(rect.x, rect.y, rect.width, rect.height); // Redraw the rectangle in the same position
+    lane.endFill(); // End the fill
   }, 100);
 };
+
 
 
 (document.querySelector('#file') as HTMLInputElement).onchange = () => {

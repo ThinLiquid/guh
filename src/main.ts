@@ -64,7 +64,7 @@ window.addEventListener('keydown', (e) => {
 
 const judgeLine = new Graphics();
 judgeLine.rect(playfieldStartX, 0, playfieldWidth, 3).fill(0xffffff);
-judgeLine.y = app.screen.height - 80;
+judgeLine.y = app.screen.height - 150;
 app.stage.addChild(judgeLine);
 
 const laneKeys = {

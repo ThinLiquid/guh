@@ -227,7 +227,7 @@ const highlightLane = (laneIndex: number) => {
   
   // Ensure you're drawing the same shape in the same position
   const rect = {
-    x: playfieldStartX + i * laneWidth, // Set your specific x-coordinate for the lane
+    x: playfieldStartX + laneIndex * laneWidth, // Set your specific x-coordinate for the lane
     y: app.screen.height,  // Set your specific y-coordinate for the lane
     width: laneWidth,  // Set your specific width for the lane
     height: app.screen.height   // Set your specific height for the lane

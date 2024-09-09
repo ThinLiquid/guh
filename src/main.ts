@@ -232,7 +232,6 @@ const highlightLane = (laneIndex: number) => {
 }
 
 (document.querySelector('#file') as HTMLInputElement).onchange = () => {
-  (document.querySelector('#file') as HTMLInputElement).onchange = null;
   start();
 }
 

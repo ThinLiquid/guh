@@ -1,8 +1,12 @@
 import { Application, Graphics } from 'pixi.js';
 
+console.log('_')
+
 const app = new Application();
 await app.init({ backgroundAlpha: 0, resizeTo: window });
 document.body.appendChild(app.canvas);
+
+console.log('_')
 
 const lanes: Graphics[] = [];
 const laneWidth = 150;

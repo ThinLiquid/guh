@@ -225,11 +225,11 @@ const start = async () => {
 const highlightLane = (laneIndex: number) => {
   const lane = lanes[laneIndex];
   lane.clear()
-  lane.fill(0xffffff);
+  lane.rect(lane.x, lane.y, lane.width, lane.height).fill(0xffffff);
 
   setTimeout(() => {
     lane.clear()
-    lane.fill(0x000000);
+    lane.rect(lane.x, lane.y, lane.width, lane.height).fill(0x000000);
   }, 100);
 }
 

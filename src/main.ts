@@ -1,14 +1,27 @@
 import { Application, Graphics } from 'pixi.js';
+import { BeatmapDecoder } from 'osu-parsers'
+// @ts-expect-error
+import { ManiaRuleset } from 'osu-mania-stable';
+import * as zip from "@zip.js/zip.js";
 
-console.log(document.body)
+const perfectTiming = 16;
+const greatTiming = 64 - 3;
+const goodTiming = 97 - 3;
+const okTiming = 127 - 3;
+const mehTiming = 151 - 3;
+const missTiming = 161 - 3;
+
+const laneWidth = 150;
+const numLanes = 4;
+
+(async () => {
 
 const app = new Application();
 await app.init({ backgroundAlpha: 0, resizeTo: window });
 document.body.appendChild(app.canvas);
 
 const lanes: Graphics[] = [];
-const laneWidth = 150;
-const numLanes = 4;
+
 const playfieldWidth = laneWidth * numLanes;
 const playfieldStartX = (app.screen.width - playfieldWidth) / 2;
 
@@ -33,12 +46,7 @@ interface Note {
 
 let combo = 0;
 
-const perfectTiming = 16;
-const greatTiming = 64 - 3;
-const goodTiming = 97 - 3;
-const okTiming = 127 - 3;
-const mehTiming = 151 - 3;
-const missTiming = 161 - 3;
+
 
 let totalTravelTime = 15
 const travelTime = Math.round(11485 / totalTravelTime)
@@ -137,7 +145,6 @@ const start = async () => {
           console.log('Missed note');
           combo = 0;
           createJudgement('Miss');
-          new Audio('combobreak.wav').play();
         }
         removeNote(note);
       } else if (note.holdNote && note.holding && currentTime >= note.releaseTime!) {
@@ -189,7 +196,6 @@ const start = async () => {
   
     console.log(`Hit note at lane ${hitNote.lane} with score ${score}`);
     createJudgement(score.toString());
-    new Audio('normal-hitnormal.wav').play();
     combo++;
   
     hitNote.hit = true;
@@ -258,13 +264,9 @@ const createJudgement = (text: string) => {
 
 let audioUrl = ''
 
-import { BeatmapDecoder } from 'osu-parsers'
-// @ts-expect-error
-import { ManiaRuleset } from 'osu-mania-stable';
-
 const ruleset = new ManiaRuleset();
 
-import * as zip from "@zip.js/zip.js";
+
 const decoder = new BeatmapDecoder()
 
 
@@ -320,3 +322,5 @@ const importMap = async (file: File) => {
     hold: (hitObject as any).endTime - hitObject.startTime
   }))
 }
+
+})()

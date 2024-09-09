@@ -1,8 +1,10 @@
 import { defineConfig } from 'vite'
+import topLevelAwait from 'vite-plugin-top-level-await'
 
 export default defineConfig({
   build: {
-    target: "ES2022"
-  },
+    target: "ESNext",
+    sourcemap: true
+  }
 })
 

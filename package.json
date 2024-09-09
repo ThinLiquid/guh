@@ -18,6 +18,7 @@
     "gsap": "^3.12.5",
     "osu-mania-stable": "^5.0.0",
     "osu-parsers": "^4.1.7",
-    "pixi.js": "^8.3.4"
+    "pixi.js": "^8.3.4",
+    "vite-plugin-top-level-await": "^1.4.4"
   }
 }

@@ -158,7 +158,7 @@ const start = async () => {
       if (keyState[key]) {
         const heldNote = notes.find(note => note.lane === lane && note.holding);
         if (heldNote) {
-          highlightLane(lane);
+          // null
         }
       }
     });
@@ -171,8 +171,6 @@ const start = async () => {
   
     const lane = laneKeys[key as keyof typeof laneKeys];
     if (lane === undefined) return;
-  
-    highlightLane(lane);
   
     const currentTime = Date.now() - startTime;
     const hitNote = notes.find(note => {
@@ -220,37 +218,7 @@ const start = async () => {
   document.addEventListener('keyup', handleKeyUp);
 }
 
-
-
-const highlightLane = (laneIndex: number) => {
-  const lane = lanes[laneIndex];
-  
-  // Ensure you're drawing the same shape in the same position
-  const rect = {
-    x: playfieldStartX + laneIndex * laneWidth, // Set your specific x-coordinate for the lane
-    y: app.screen.height,  // Set your specific y-coordinate for the lane
-    width: laneWidth,  // Set your specific width for the lane
-    height: app.screen.height   // Set your specific height for the lane
-  };
-
-  // Clear the previous graphics and redraw with red
-  lane.clear(); // Clear the previous graphics
-  lane.beginFill(0xFF0000); // Red color (0xFF0000 is the hex code for red)
-  lane.drawRect(rect.x, rect.y, rect.width, rect.height); // Draw the rectangle at the correct position
-  lane.endFill(); // End the fill
-
-  setTimeout(() => {
-    // Clear and redraw the same shape in black after 100ms
-    lane.clear(); // Clear previous graphics
-    lane.beginFill(0x000000); // Black color (0x000000 is the hex code for black)
-    lane.drawRect(rect.x, rect.y, rect.width, rect.height); // Redraw the rectangle in the same position
-    lane.endFill(); // End the fill
-  }, 100);
-};
-
-
-
-(document.querySelector('#file') as HTMLInputElement).onchange = () => {
+;(document.querySelector('#file') as HTMLInputElement).onchange = () => {
   start();
 }
 
